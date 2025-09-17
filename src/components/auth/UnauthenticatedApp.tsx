@@ -11,7 +11,7 @@ const UnauthenticatedApp = () => {
       <header className="border-b border-gray-100 bg-white">
         <div className="container mx-auto flex items-center justify-between py-4">
           <div className="font-bold text-xl">
-            <span className="gradient-text">People</span>GPT
+            <span className="gradient-text">HireSenstry</span>
           </div>
           
           <div className="flex items-center gap-3">
@@ -32,7 +32,7 @@ const UnauthenticatedApp = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                  Recruit smarter. <span className="gradient-text">PeopleGPT</span> screens, ranks, and reaches out for you—in seconds.
+                  Recruit smarter. <span className="gradient-text">HireSenstry</span> screens, ranks, and reaches out for you—in seconds.
                 </h1>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                   Harness the power of AI to transform your recruitment process. Upload resumes, find the perfect candidates, and contact them automatically.
@@ -110,7 +110,7 @@ const UnauthenticatedApp = () => {
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-4">How it works</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                PeopleGPT simplifies the recruitment process with powerful AI-driven features
+                HireSenstry simplifies the recruitment process with powerful AI-driven features
               </p>
             </div>
 
@@ -153,71 +153,7 @@ const UnauthenticatedApp = () => {
             </div>
           </section>
 
-          {/* Demo Video Section */}
-          <section className="py-16 bg-gray-50 w-full">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">See PeopleGPT in action</h2>
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                  Watch how our AI-powered platform transforms the recruitment process
-                </p>
-              </div>
-              
-              <div className="max-w-4xl mx-auto bg-white p-4 rounded-xl shadow-md">
-                <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                  <iframe
-                    src="https://www.loom.com/embed/addcef296a954ae8ad63b083c370cdef?sid=667078ad-da33-43e5-8fd4-6fa6a18e394c"
-                    frameBorder="0"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-          </section>
 
-          {/* CTA Section */}
-          <section className="py-20 container mx-auto px-4">
-            <div className="max-w-3xl mx-auto bg-gradient-to-r from-recruiter-primary to-recruiter-secondary rounded-xl p-10 text-white text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to transform your recruitment process?</h2>
-              <p className="text-lg mb-8">
-                Join hundreds of recruiters who are saving time and finding better candidates with PeopleGPT.
-              </p>
-              <SignInButton>
-                <Button size="lg" variant="secondary" className="bg-white text-recruiter-primary hover:bg-gray-100">
-                  Start Recruiting with AI <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </SignInButton>
-            </div>
-          </section>
-
-          {/* About Team Section */}
-          <section className="py-16 container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Meet the team</h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                We're a team of recruiters, developers, and AI enthusiasts passionate about transforming the recruitment industry
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4"></div>
-                <h3 className="font-semibold text-lg">Alex Johnson</h3>
-                <p className="text-gray-600">CEO & Co-founder</p>
-              </div>
-              <div className="text-center">
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4"></div>
-                <h3 className="font-semibold text-lg">Sarah Chen</h3>
-                <p className="text-gray-600">CTO & AI Lead</p>
-              </div>
-              <div className="text-center">
-                <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4"></div>
-                <h3 className="font-semibold text-lg">Michael Rodriguez</h3>
-                <p className="text-gray-600">Head of Recruitment</p>
-              </div>
-            </div>
-          </section>
         </div>
       </main>
       
@@ -226,14 +162,14 @@ const UnauthenticatedApp = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <div className="font-bold text-xl">
-                <span className="gradient-text">People</span>GPT
+                <span className="gradient-text">HireSenstry</span>
               </div>
               <p className="text-gray-500 text-sm mt-1">
                 AI-powered recruitment platform
               </p>
             </div>
             <div className="text-gray-500 text-sm">
-              © 2025 PeopleGPT. All rights reserved.
+              © 2025 HireSenstry. All rights reserved.
             </div>
           </div>
         </div>

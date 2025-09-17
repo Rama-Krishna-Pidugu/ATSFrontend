@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-4">
         <NavLink to="/" className="flex items-center gap-2">
           <div className="font-bold text-xl">
-            <span className="gradient-text">People</span>GPT
+            <span className="gradient-text">HireSenstry</span>
           </div>
         </NavLink>
 

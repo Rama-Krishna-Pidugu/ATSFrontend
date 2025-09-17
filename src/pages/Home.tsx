@@ -12,7 +12,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Recruit smarter. <span className="gradient-text">PeopleGPT</span> screens, ranks, and reaches out for you—in seconds.
+              Recruit smarter. <span className="gradient-text">HireSenstry</span> screens, ranks, and reaches out for you—in seconds.
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Harness the power of AI to transform your recruitment process. Upload resumes, find the perfect candidates, and contact them automatically.
@@ -63,7 +63,7 @@ const Home = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4">How it works</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            PeopleGPT simplifies the recruitment process with powerful AI-driven features
+            HireSenstry simplifies the recruitment process with powerful AI-driven features
           </p>
         </div>
 
@@ -103,74 +103,6 @@ const Home = () => {
               Generate relevant technical questions based on candidate skills. Streamline your screening process.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Demo Video Section */}
-      <section className="py-16 bg-gray-50 w-full">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">See PeopleGPT in action</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Watch how our AI-powered platform transforms the recruitment process
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto bg-white p-4 rounded-xl shadow-md">
-            <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.loom.com/embed/addcef296a954ae8ad63b083c370cdef?sid=667078ad-da33-43e5-8fd4-6fa6a18e394c"
-                frameBorder="0"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 container mx-auto px-4">
-        <div className="max-w-3xl mx-auto bg-gradient-to-r from-recruiter-primary to-recruiter-secondary rounded-xl p-10 text-white text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to transform your recruitment process?</h2>
-          <p className="text-lg mb-8">
-            Join hundreds of recruiters who are saving time and finding better candidates with PeopleGPT.
-          </p>
-          <Button size="lg" variant="secondary" className="bg-white text-recruiter-primary hover:bg-gray-100" asChild>
-            <Link to="/upload">Start Recruiting with AI <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </Button>
-        </div>
-      </section>
-
-      <section className="py-16 container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Meet the team</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            We're a team of recruiters, developers, and AI enthusiasts passionate about transforming the recruitment industry
-          </p>
-        </div>
-
-
-        <div className="text-center">
-          <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
-            <img
-              src="https://media.licdn.com/dms/image/v2/D5603AQE6V16YKgo5dw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715309959727?e=1753920000&v=beta&t=UoNbn0FZpfzMn0mT-HFjQj2c04uZluyRjFPnPe8-FXE"
-              alt="Chaitanya Pidugu"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <h3 className="font-semibold text-lg">Chaitanya Pidugu</h3>
-          <p className="text-gray-600">Lead Developer</p>
-          <a
-            href="https://www.linkedin.com/in/chaitanyapidugu/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 mt-2"
-          >
-            <Linkedin className="h-4 w-4 mr-1" />
-            LinkedIn
-          </a>
         </div>
       </section>
     </div>

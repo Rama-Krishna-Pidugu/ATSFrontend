@@ -19,14 +19,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <div className="font-bold text-xl">
-                <span className="gradient-text">People</span>GPT
+                <span className="gradient-text">HireSenstry</span>
               </div>
               <p className="text-gray-500 text-sm mt-1">
                 AI-powered recruitment platform
               </p>
             </div>
             <div className="text-gray-500 text-sm">
-              © 2025 PeopleGPT. All rights reserved.
+              © 2025 HireSenstry. All rights reserved.
             </div>
           </div>
         </div>
