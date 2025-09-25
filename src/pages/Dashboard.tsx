@@ -3,14 +3,31 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   PieChart, Pie, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer, Cell, LineChart, Line
+  ResponsiveContainer, Cell, LineChart, Line, RadialBarChart, RadialBar
 } from "recharts";
 import { getApiUrl, API_CONFIG } from "@/config/api";
 import { createFetchWithAuth } from "@/lib/api-utils";
 import { useAuthToken } from "@/hooks/use-auth-token";
 import { skillDistribution, experienceDistribution, locationDistribution, skillGaps } from "@/lib/mock-data";
 
-const COLORS = ['#4361ee', '#3a0ca3', '#7209b7', '#f72585', '#4cc9f0', '#4895ef', '#560bad', '#b5179e'];
+// Enhanced color palette matching the reference design
+const COLORS = ['#4361ee', '#3a0ca3', '#7209b7', '#f72585', '#4cc9f0', '#4895ef', '#560bad', '#b5179e', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+const GRADIENT_COLORS = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#43e97b', '#38f9d7'];
+
+// Technology tags for the header
+const TECH_TAGS = [
+  'Node.js', 'Git', 'MongoDB', 'MySQL', 'Data Structures & Algorithms', 'C#', 'VB.Net', 'C', 'C++',
+  '.Net Framework 4.0/4.5', 'ASP.Net', 'ASP.NET MVC', 'ADO.Net', 'Entity Framework', 'AJAX', 'Web Service',
+  'LINQ', 'JQuery', 'Bootstrap CSS', 'SQL', 'MySql', 'Windows', 'Tortoise SVN', 'GitHub', 'Microsoft Word',
+  'Excel', 'Access', 'Power point', 'Automation Expertise', 'Performance Get insights into you',
+  'Design Principles', 'Software Updates', 'QA Testing', 'Source and Version Control: Git, Github',
+  'Strong Interpersonal and Communication Skills', 'Software Experience Validation', 'Code and Quality Standards',
+  'Object-Oriented Programming', 'Teamwork and Collaboration', 'Performance Evaluation and Optimization',
+  'Data Structures and Algorithms', 'Programming Languages: Java, C#, .Net, Python', 'API Design and Development',
+  'Analytical Thinking and Problem Solving', 'Agile/Scrum Methodology', 'Software Components and Libraries',
+  'Database Oracle/MongoDB', 'Project Oversight', 'Conceptual Designing', 'Usability Understanding',
+  'REST APIs', 'SOAP APIs', 'Object-oriented programming'
+];
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
