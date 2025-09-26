@@ -8,6 +8,9 @@ export const API_CONFIG = {
     UPLOAD_RESUME: 'resume/upload/',
     SEARCH: 'search/search/',
     DASHBOARD_METRICS: 'search/dashboard-metrics',
+    SCREENING_QUESTIONS: 'search/resume/',
+    GENERATE_EMAIL: 'search/resume/',
+    SEND_EMAIL: 'search/resume/',
   },
 } as const;
 

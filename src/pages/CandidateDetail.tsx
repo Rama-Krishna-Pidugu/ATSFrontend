@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { getScreeningQuestions, getOutreachTemplate } from "@/lib/mock-data";
+import { getOutreachTemplate } from "@/lib/mock-data";
 import { ArrowLeft, Send, Calendar, MessageSquare, Mail, MailOpen } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -91,20 +91,32 @@ const CandidateDetail = () => {
 
         const data = await response.json();
         setCandidate(data);
-        setScreeningQuestions(getScreeningQuestions(data.skills));
-        
-        // Convert API response to match the expected format for outreach template
-        const outreachFormat = {
-          id: data.basic_info.id,
-          name: data.basic_info.full_name,
-          skills: data.skills,
-          experience: data.basic_info.experience_years,
-          education: data.education.details.map(edu => edu.degree).join(", "),
-          contact: data.contact_info,
-          summary: data.basic_info.summary,
-          similarity_score: 0.8 // Default value since it's not in the API response
-        };
-        setOutreachEmail(getOutreachTemplate(outreachFormat));
+
+        // Fetch screening questions from API
+        const questionsResponse = await fetchWithAuth(getApiUrl(`search/resume/${id}/screening-questions`));
+        if (questionsResponse.ok) {
+          const questionsData = await questionsResponse.json();
+          setScreeningQuestions(questionsData.questions || []);
+        } else {
+          console.error("Failed to fetch screening questions");
+          setScreeningQuestions([]);
+        }
+
+        // Generate initial outreach email from API
+        const emailResponse = await fetchWithAuth(getApiUrl(`search/resume/${id}/generate-email`), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ template: "initial_outreach" }),
+        });
+        if (emailResponse.ok) {
+          const emailData = await emailResponse.json();
+          setOutreachEmail(emailData.email || emailData.body || "");
+        } else {
+          console.error("Failed to generate outreach email");
+          setOutreachEmail("");
+        }
       } catch (error) {
         console.error("Failed to fetch candidate details:", error);
         toast.error("Failed to load candidate details");
@@ -118,13 +130,52 @@ const CandidateDetail = () => {
     }
   }, [id]);
 
-  const handleSendEmail = () => {
+  const handleSendEmail = async () => {
+    if (!candidate || !id) return;
+
     setIsSending(true);
-    // Simulate sending email
-    setTimeout(() => {
-      setIsSending(false);
+    try {
+      // Compute subject based on email type
+      let subject = "";
+      switch (emailType) {
+        case "initial":
+          subject = `Exciting opportunity for ${candidate.skills[0] || "talented professional"} developer`;
+          break;
+        case "interview":
+          subject = `Interview Invitation: ${candidate.skills[0] || "Position"}`;
+          break;
+        case "congratulations":
+          subject = "Congratulations on Your Interview Success";
+          break;
+        case "regret":
+          subject = "Regarding Your Recent Application";
+          break;
+      }
+
+      const response = await fetchWithAuth(getApiUrl(`search/resume/${id}/send-email`), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email_body: outreachEmail,
+          subject: subject,
+          recipient: candidate.contact_info.email,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to send email: ${response.status}`);
+      }
+
+      const result = await response.json();
       toast.success(`${emailType === "initial" ? "Outreach" : emailType.charAt(0).toUpperCase() + emailType.slice(1)} email sent successfully!`);
-    }, 1500);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast.error("Failed to send email. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const getEmailTemplate = (type: string) => {
@@ -173,9 +224,31 @@ PeopleGPT`;
     }
   };
 
-  const switchEmailType = (type: "initial" | "interview" | "congratulations" | "regret") => {
+  const switchEmailType = async (type: "initial" | "interview" | "congratulations" | "regret") => {
     setEmailType(type);
-    setOutreachEmail(getEmailTemplate(type));
+    if (type === "initial" && id) {
+      try {
+        const response = await fetchWithAuth(getApiUrl(`search/resume/${id}/generate-email`), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ template: "initial_outreach" }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setOutreachEmail(data.email || data.body || "");
+        } else {
+          console.error("Failed to generate email");
+          setOutreachEmail("");
+        }
+      } catch (error) {
+        console.error("Error generating email:", error);
+        setOutreachEmail("");
+      }
+    } else {
+      setOutreachEmail(getEmailTemplate(type));
+    }
   };
 
   const updateInterviewTemplate = () => {
