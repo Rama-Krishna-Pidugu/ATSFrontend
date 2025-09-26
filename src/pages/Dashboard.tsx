@@ -148,38 +148,7 @@ const Dashboard = () => {
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Skills Distribution */}
-          <Card className="col-span-1">
-            <CardHeader>
-              <CardTitle>Top Skills Distribution</CardTitle>
-              <CardDescription>
-                Percentage of candidates with each skill
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={dashboardData.skill_distribution || []}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                      label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    >
-                      {(dashboardData.skill_distribution || []).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip formatter={(value) => `${value}%`} />
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
+          
           
           {/* Experience Distribution */}
           <Card className="col-span-1">
@@ -213,36 +182,7 @@ const Dashboard = () => {
           </Card>
           
           {/* Location Distribution */}
-          <Card className="col-span-1">
-            <CardHeader>
-              <CardTitle>Location Distribution</CardTitle>
-              <CardDescription>
-                Where your candidates are based
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    layout="vertical"
-                    data={dashboardData.location_distribution || []}
-                    margin={{
-                      top: 20,
-                      right: 30,
-                      left: 70,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" />
-                    <YAxis dataKey="name" type="category" />
-                    <Tooltip />
-                    <Bar dataKey="value" fill="#7209b7" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
+         
           
           {/* Skill Demand Trends (Fixed version) */}
           <Card className="col-span-1">
