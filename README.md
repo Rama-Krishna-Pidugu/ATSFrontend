@@ -71,3 +71,71 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+💻 Frontend Application (ATSFrontend-main)
+ATSFrontend-main/
+├── public/
+│   ├── favicon.ico
+│   ├── placeholder.svg
+│   └── robots.txt
+├── src/
+│   ├── app/
+│   │   └── layout.tsx
+│   ├── components/
+│   │   ├── auth/
+│   │   │   ├── AuthenticatedApp.tsx
+│   │   │   └── UnauthenticatedApp.tsx
+│   │   ├── feedback/
+│   │   │   └── FeedbackDialog.tsx
+│   │   ├── ui/
+│   │   │   ├── accordion.tsx
+│   │   │   ├── alert-dialog.tsx
+│   │   │   ├── alert.tsx
+│   │   │   ├── aspect-ratio.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── ... (many shadcn-ui components)
+│   │   │   └── use-toast.ts
+│   │   ├── ContactPopup.tsx
+│   │   ├── Layout.tsx
+│   │   └── Navbar.tsx
+│   ├── config/
+│   │   └── api.ts             // API URL configuration
+│   ├── hooks/
+│   │   ├── use-auth-token.ts  // Clerk authentication token hook
+│   │   ├── use-mobile.tsx
+│   │   └── use-toast.ts
+│   ├── lib/
+│   │   ├── api-utils.ts       // Authenticated fetch wrapper
+│   │   ├── mock-data.ts       // Mock data and functions
+│   │   └── utils.ts
+│   ├── pages/
+│   │   ├── CandidateDetail.tsx
+│   │   ├── Candidates.tsx
+│   │   ├── Dashboard.tsx      // Talent analytics dashboard
+│   │   ├── Home.tsx
+│   │   ├── Index.tsx
+│   │   ├── NotFound.tsx
+│   │   ├── Pricing.tsx
+│   │   ├── Search.tsx         // Semantic search page
+│   │   └── Upload.tsx         // Resume upload page
+│   ├── App.css
+│   ├── App.tsx                // Main app setup and routing
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── .gitignore
+├── bun.lockb
+├── components.json
+├── eslint.config.js
+├── index.html
+├── LICENSE
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.ts
+├── TODO.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts

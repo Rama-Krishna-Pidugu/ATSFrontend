@@ -54,18 +54,43 @@ const TalentSearch = () => {
   const { getAuthHeaders } = useAuthToken();
   const fetchWithAuth = createFetchWithAuth(getAuthHeaders);
 
+  // Helper function to parse location from query string
+  const parseLocationFromQuery = (query: string): string | null => {
+    // Simple regex to extract city names (improve as needed)
+    const locationRegex = /\b(in|at|from)\s+([A-Z][a-zA-Z]+(?:\s[A-Z][a-zA-Z]+)*)/i;
+    const match = query.match(locationRegex);
+    if (match && match[2]) {
+      return match[2];
+    }
+    return null;
+  };
+
+  // Helper function to parse experience years from query string
+  const parseExperienceFromQuery = (query: string): number | null => {
+    const experienceRegex = /(\d+)\+?\s*(?:years|yrs|year)/i;
+    const match = query.match(experienceRegex);
+    if (match && match[1]) {
+      return parseInt(match[1], 10);
+    }
+    return null;
+  };
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       setIsSearching(true);
-      
+
+      // Parse location and experience from query
+      const parsedLocation = parseLocationFromQuery(searchQuery);
+      const parsedExperience = parseExperienceFromQuery(searchQuery);
+
       try {
         const response = await fetchWithAuth(getApiUrl(API_CONFIG.ENDPOINTS.SEARCH), {
           method: 'POST',
           body: JSON.stringify({
             query: searchQuery,
-            location: null,
-            experience_years: null
+            location: parsedLocation,
+            experience_years: parsedExperience
           })
         });
         
@@ -77,11 +102,20 @@ const TalentSearch = () => {
         console.log(data);
         
         // Process and set the search results
-        const candidates = data.map(candidate => ({
-          ...candidate,
-          // For backward compatibility with existing UI
-          matchScore: Math.round(candidate.similarity_score * 100)
-        }));
+        const candidates = data.map(candidate => {
+          // Ensure similarity_score is a number between 0 and 1
+          let sim = Number(candidate.similarity_score) || 0;
+          if (!isFinite(sim)) sim = 0;
+          sim = Math.max(0, Math.min(sim, 1));
+          const pct = Math.round(sim * 100);
+          const clampedPct = Math.max(0, Math.min(pct, 100));
+          return {
+            ...candidate,
+            // For backward compatibility with existing UI
+            matchScore: clampedPct,
+            similarity_score: sim
+          };
+        });
         
         setSearchResults(candidates);
       } catch (error) {
@@ -239,7 +273,11 @@ const TalentSearch = () => {
                               <p className="text-gray-600">{candidate.location || "Remote"}</p>
                             </div>
                             <div className="bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-sm font-medium">
-                              {candidate.matchScore || Math.round(candidate.similarity_score * 100)}%
+                              {(
+                                typeof candidate.matchScore === 'number'
+                                  ? Math.max(0, Math.min(candidate.matchScore, 100))
+                                  : Math.max(0, Math.min(Math.round((candidate.similarity_score || 0) * 100), 100))
+                              )}%
                             </div>
                           </div>
                           
@@ -333,7 +371,11 @@ const TalentSearch = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="bg-blue-50 text-blue-700 rounded-full px-3 py-1 text-xs font-medium inline-block">
-                              {candidate.matchScore || Math.round(candidate.similarity_score * 100)}%
+                              {(
+                                typeof candidate.matchScore === 'number'
+                                  ? Math.max(0, Math.min(candidate.matchScore, 100))
+                                  : Math.max(0, Math.min(Math.round((candidate.similarity_score || 0) * 100), 100))
+                              )}%
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
