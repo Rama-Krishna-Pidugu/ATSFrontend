@@ -74,7 +74,7 @@ const UploadPage = () => {
         name: candidate.name,
         skills: candidate.skills,
         experience: candidate.experience,
-        location: candidate.location || "Not specified",
+        location: candidate.location ,
         education: candidate.education,
         contact: candidate.contact,
         summary: candidate.summary

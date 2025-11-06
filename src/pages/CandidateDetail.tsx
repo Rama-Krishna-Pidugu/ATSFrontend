@@ -320,9 +320,9 @@ PeopleGPT`;
             <TabsTrigger value="profile" className="data-[state=active]:bg-recruiter-primary data-[state=active]:text-white">
               Profile
             </TabsTrigger>
-            <TabsTrigger value="screening" className="data-[state=active]:bg-recruiter-primary data-[state=active]:text-white">
+            {/* <TabsTrigger value="screening" className="data-[state=active]:bg-recruiter-primary data-[state=active]:text-white">
               AI Screening
-            </TabsTrigger>
+            </TabsTrigger> */}
             <TabsTrigger value="outreach" className="data-[state=active]:bg-recruiter-primary data-[state=active]:text-white">
               Outreach
             </TabsTrigger>
@@ -424,7 +424,7 @@ PeopleGPT`;
             </div>
           </TabsContent>
           
-          <TabsContent value="screening" className="mt-0">
+          {/* <TabsContent value="screening" className="mt-0">
             <Card>
               <CardHeader>
                 <CardTitle>AI-Generated Screening Questions</CardTitle>
@@ -466,7 +466,7 @@ PeopleGPT`;
               </CardContent>
             </Card>
           </TabsContent>
-          
+           */}
           <TabsContent value="outreach" className="mt-0">
             <Card>
               <CardHeader>
