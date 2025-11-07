@@ -1,8 +1,9 @@
 export const API_CONFIG = {
   // BASE_URL: 'https://hiresentry.in/api',
-  BASE_URL: 'https://main.dibr3rch5hdjx.amplifyapp.com/api',
-  // BASE_URL: 'http://localhost:8000/api',
-  // BASE_URL: 'http://13.233.163.230:8000/api',
+  // BASE_URL: 'https://main.dibr3rch5hdjx.amplifyapp.com/api',
+  BASE_URL: 'http://localhost:8000/api',
+  // BASE_URL: 'https://13.201.230.43:8000/api',
+  
   VERSION: 'v1',
   ENDPOINTS: {
     RESUMES: 'search/all/',
